@@ -22,6 +22,7 @@ def predict():
     for key in f.keys():
         for value in f.getlist(key):
             print (key,":",value)
+
     features = [float(x) for x in request.form.values()]
     final_features = [np.array(features)]
     
