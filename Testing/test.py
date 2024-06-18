@@ -46,36 +46,6 @@ def getData(filename, start, end):
         print(f'Processed {line_count} lines.')
 
 def test(filename, filetest):
-    
-    result_file = open(filename, 'r')
-    results = json.load(result_file)
-    
-    expected = []
-
-    correct_value = 0
-    data_length = len(results)
-
-    with open(filetest) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:     
-                line_count += 1
-                continue
-            expected.append({"id": row[0], "prediction": row[1]})
-    
-    for i in range(0,data_length):
-        result = float(results[i]['result']['prediction'])
-        expect = float(expected[i]['prediction'])
-
-        if result == expect:
-            correct_value += 1
-        
-
-    print(f"Hasil prediksi : {round((correct_value/data_length) * 100, 2)} % akurat dari {data_length + 1}" )
-
-
-def test2(filename, filetest):
     result_file = open(filename, 'r')
     results = json.load(result_file)
     
@@ -129,10 +99,12 @@ def test2(filename, filetest):
     print('Classification Report:')
     print(report)
 
-test2('result/0_1000.json', 'expected.csv')
-
 
 # getData('totest.csv', 0, 1000)
+    
+test('result/0_1000.json', 'expected.csv')
+
+
 
 
 
